@@ -70,6 +70,7 @@ function flipCards() {
     let compare2 = deck2.shift();
     card2Remove = compare2;
     let value2 = lookupValue(`${compare2}`);
+
     deck1DrawEl.classList.add(`${compare1}`);
     deck1DrawEl.classList.remove('outline');
     deck2DrawEl.classList.add(`${compare2}`);
@@ -88,6 +89,9 @@ function flipCards() {
         deck2WinPile.push(`${compare2}`);
         winPile2.classList.remove('outline');
         winPile2.classList.add('back-blue');
+    }
+    if (value1 === value2) {
+        message.textContent = "WAR!!!!!!!!!"
     }
     
 }
