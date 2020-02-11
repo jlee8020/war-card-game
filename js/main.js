@@ -1,5 +1,5 @@
 
-
+// Variables
 var cards = ["dA","dQ","dK","dJ","d10","d09","d08","d07","d06","d05","d04","d03","d02","hA","hQ","hK","hJ","h10","h09","h08","h07","h06","h05","h04","h03","h02","cA","cQ","cK","cJ","c10","c09","c08","c07","c06","c05","c04","c03","c02","sA","sQ","sK","sJ","s10","s09","s08","s07","s06","s05","s04","s03","s02"];
 var deck1 = [];
 var deck2 = [];
@@ -8,7 +8,10 @@ var deck2WinPile = [];
 var card1Remove = "temp";
 var card2Remove = "temp";
 var isWinner = false;
+var warMode = false;
 
+
+// Cached element references
 let gameButton = document.getElementById('game-btn');
 let deck1El = document.getElementById('deck-1');
 let deck2El = document.getElementById('deck-2');
@@ -19,11 +22,25 @@ let deck2CardsLeftEl = document.getElementById('deck-2-cards-left');
 let winPile1 = document.getElementById('win-pile-1');
 let winPile2 = document.getElementById('win-pile-2');
 let message = document.getElementById('message');
+let war1Card1 = document.getElementById('war-1-1');
+let war1Card2 = document.getElementById('war-1-2');
+let war1Card3 = document.getElementById('war-1-3');
+let war1Card4 = document.getElementById('war-1-4');
+let war2Card1 = document.getElementById('war-2-1');
+let war2Card2 = document.getElementById('war-2-2');
+let war2Card3 = document.getElementById('war-2-3');
+let war2Card4 = document.getElementById('war-2-4');
+let warButton = document.getElementById('btn-war');
 
+// Event listeners
 gameButton.addEventListener('click',handleClick);
+warButton.addEventListener('click', handleWar);
 
 
 
+function handleWar() {
+    warMode = true;
+}
 
 function handleClick() {
     if (isWinner === false) {
@@ -66,7 +83,9 @@ function flipCards() {
     
     let compare1 = deck1.shift();
     card1Remove = compare1;
-    let value1 = lookupValue(`${compare1}`);
+    console.log(compare1)
+    let value1 = lookupValue(compare1);
+    console.log(value1)
     let compare2 = deck2.shift();
     card2Remove = compare2;
     let value2 = lookupValue(`${compare2}`);
@@ -92,6 +111,26 @@ function flipCards() {
     }
     if (value1 === value2) {
         message.textContent = "WAR!!!!!!!!!"
+        war1Card1.classList.remove('hidden');
+        war1Card2.classList.remove('hidden');
+        war1Card3.classList.remove('hidden');
+        war1Card4.classList.remove('hidden');
+        war2Card1.classList.remove('hidden');
+        war2Card2.classList.remove('hidden');
+        war2Card3.classList.remove('hidden');
+        war2Card4.classList.remove('hidden');
+        warButton.classList.remove('hidden');
+        while (warMode === true) {
+            // if (deck1.length < 4) {
+            //     deck1WinPile = shuffle(deck1WinPile);
+            //     for (i=0; i<=(deck1WinPile.length - 1); i++) {
+            //         let cardToMove = deck1WinPile[i];
+            //         deck1.push(`${cardToMove}`);
+            //     }
+            // deck1WinPile = [];
+            // }
+            
+        }
     }
     
 }
